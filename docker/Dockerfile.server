@@ -43,7 +43,8 @@ ENV MIGRATIONS_DIR=/app/db/migrations
 ENV PORT=8080
 
 # curl is only needed by the API healthcheck below; workers don't use it.
-RUN apk add --no-cache curl
+# git is required by the backsync action to clone/commit/push the seeds repo.
+RUN apk add --no-cache curl git
 
 WORKDIR /app
 COPY --from=deps /app .
